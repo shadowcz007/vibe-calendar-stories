@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 271 91% 65%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -32,61 +33,115 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 240 10% 4%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 240 10% 4%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 240 10% 4%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 240 4% 16%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 240 4% 16%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 240 5% 65%;
+    
+    --sidebar-background: 240 10% 4%;
+    --sidebar-foreground: 240 5% 85%;
+    --sidebar-primary: 271 91% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 85%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 271 91% 65%;
+  }
+
+  /* Pastel Theme */
+  .theme-pastel {
+    --primary: 345 100% 87%;
+    --primary-foreground: 345 50% 30%;
+
+    --secondary: 190 80% 90%;
+    --secondary-foreground: 190 50% 30%; 
+
+    --accent: 130 60% 90%;
+    --accent-foreground: 130 50% 30%;
+
+    --background: 30 100% 98%;
+    --foreground: 30 10% 30%;
+  }
+
+  /* Gradient Theme */
+  .theme-gradient {
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 100% 70%;
+    --secondary-foreground: 210 50% 20%;
+
+    --accent: 320 100% 75%;
+    --accent-foreground: 320 50% 20%;
+
+    --background: 280 20% 97%;
+    --foreground: 280 20% 20%;
+  }
+
+  /* Minimal Theme */
+  .theme-minimal {
+    --primary: 220 10% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 10% 90%;
+    --secondary-foreground: 220 10% 30%;
+
+    --accent: 220 10% 80%;
+    --accent-foreground: 220 10% 20%;
+
+    --background: 0 0% 100%;
+    --foreground: 220 10% 10%;
+  }
+
+  /* Dark Theme */
+  .theme-dark {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+
+    --primary: 271 91% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 98%;
+
+    --accent: 271 91% 35%;
+    --accent-foreground: 0 0% 100%;
   }
 }
 
@@ -97,5 +152,61 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .calendar-day {
+    @apply relative h-14 p-1 border border-border/50 hover:bg-accent/20 transition-colors cursor-pointer;
+  }
+
+  .calendar-day.active {
+    @apply bg-accent/30;
+  }
+
+  .calendar-day.today {
+    @apply font-bold relative;
+  }
+
+  .calendar-day.today:after {
+    content: '';
+    @apply absolute top-1 right-1 w-2 h-2 bg-primary rounded-full;
+  }
+
+  .calendar-day.other-month {
+    @apply text-muted-foreground/50;
+  }
+
+  .day-event {
+    @apply text-xs px-1 py-0.5 rounded-sm mb-1 truncate text-primary-foreground bg-primary/90;
+  }
+
+  .drag-handle {
+    @apply cursor-grab active:cursor-grabbing;
+  }
+
+  .theme-switcher {
+    @apply flex items-center justify-center w-8 h-8 rounded-full;
+  }
+
+  .theme-switcher.active {
+    @apply ring-2 ring-primary;
+  }
+
+  .theme-minimal-preview {
+    @apply bg-theme-minimal;
+  }
+
+  .theme-pastel-preview {
+    @apply bg-theme-pastel;
+  }
+
+  .theme-gradient-preview {
+    @apply bg-gradient-to-br from-purple-400 via-pink-300 to-blue-300;
+  }
+
+  .theme-dark-preview {
+    @apply bg-theme-dark;
   }
 }
